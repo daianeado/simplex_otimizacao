@@ -1,18 +1,17 @@
 package com.otimizacao.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Restricao {
 	//	Variável para identificar se a restrição esta comparando se é maior igual, menor igual ou igual
-	private List<String> tipoRestricao;
-	private List<Double> x = new ArrayList<Double>();
-	private List<Double> result = new ArrayList<Double>();
+	private String tipoRestricao;
+	private List<Double> x;
+	private Double result;
 	
-	public List<String> getTipoRestricao() {
+	public String getTipoRestricao() {
 		return tipoRestricao;
 	}
-	public void setTipoRestricao(List<String> tipoRestricao) {
+	public void setTipoRestricao(String tipoRestricao) {
 		this.tipoRestricao = tipoRestricao;
 	}
 	public List<Double> getX() {
@@ -21,10 +20,10 @@ public class Restricao {
 	public void setX(List<Double> x) {
 		this.x = x;
 	}
-	public List<Double> getResult() {
+	public Double getResult() {
 		return result;
 	}
-	public void setResult(List<Double> result) {
+	public void setResult(Double result) {
 		this.result = result;
 	}
 	

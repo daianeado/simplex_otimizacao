@@ -1,11 +1,10 @@
 package com.otimizacao.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FuncaoObjetiva {
 	private String objetivo;
-	private List<Double> x = new ArrayList<>();
+	private List<Double> x;
 
 	public String getObjetivo() {
 		return objetivo;
@@ -22,4 +21,5 @@ public class FuncaoObjetiva {
 	public void setX(List<Double> x) {
 		this.x = x;
 	}
+
 }

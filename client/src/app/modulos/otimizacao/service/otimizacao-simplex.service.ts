@@ -21,6 +21,6 @@ export class OtimizacaoSimplexService extends Resource {
     @ResourceAction({
         method: RequestMethod.Post
     })
-    resolveProblema: ResourceMethod<MixDeProducao, MixDeProducao>;
+    resolverProblema: ResourceMethod<MixDeProducao, MixDeProducao>;
    
 }

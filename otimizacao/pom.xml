@@ -43,7 +43,22 @@
 			<groupId>io.dropwizard.metrics</groupId>
 			<artifactId>metrics-annotation</artifactId>
 		</dependency>
+		
+		 <dependency>
+            <groupId>org.gnu.glpk</groupId>
+            <artifactId>glpk-java</artifactId>
+            <version>1.10.0</version>
+        </dependency>
 	</dependencies>
+	
+	<repositories>
+        <repository>
+            <id>XypronRelease</id>
+            <name>Xypron Release</name>
+            <url>https://www.xypron.de/repository</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
 
 	<build>
 		<plugins>

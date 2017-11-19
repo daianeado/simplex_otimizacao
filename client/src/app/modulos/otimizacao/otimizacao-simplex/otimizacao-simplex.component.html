@@ -4,20 +4,20 @@
 <div class="ui-g-12" style="margin: 10px 0">
     <div class="banner">
         <div class="container titulo">
-            <h1 class="logo-font">Simplex</h1>
-            <p>Otimização de Sistemas Computacionais</p>
+            <h1 class="logo-font">Problema de Mix de Produção</h1>
+            
         </div>
     </div>
-    <div *ngIf="escolherVariaveis">
+    <div *ngIf="escolherVariaveis" class="campos-quantidade">
 
-        <div class="ui-g-12 ui-md-6 ui-input-container">
+        <div class="ui-g-12 ui-md-4 ui-input-container">
             <div class="md-inputfield">
                 <input type="number" pInputText max="10" name="quantidadeVariaveisDecisao" #quantidadeVariaveisDecisao="ngModel" [(ngModel)]="mixDeProducao.quantidadeVariaveisDecisao" required (keyup)="checkNumber($event, quantidadeVariaveisDecisao, 10)" (keypress)="checkNaN($event)">
                 <label>Quantidade variáveis de decisão</label>
             </div>
         </div>
 
-        <div class="ui-g-12 ui-md-6 ui-input-container">
+        <div class="ui-g-12 ui-md-4 ui-input-container">
             <div class="md-inputfield">
                 <input type="number" pInputText max="10" name="quantidadeRestricao" #quantidadeRestricao="ngModel" [(ngModel)]="mixDeProducao.quantidadeRestricao" required (keyup)="checkNumber($event, quantidadeVariaveisDecisao, 10)" (keypress)="checkNaN($event)">
                 <label>Quantidade de restrições</label>
@@ -25,7 +25,7 @@
         </div>
     </div>
 </div>
-<div class="ui-g-12">
+<div class="ui-g-12 ui-md-4">
     <button pButton type="button" label="Avançar" icon="fa-angle-right" class="auto-width ui-button" (click)="avancar()" *ngIf="escolherVariaveis"></button>
 </div>
 
@@ -39,15 +39,15 @@
     <div class="ui-g-12 ui-md-4 ui-input-container">
         <label>Função</label>
         <div class="ui-g-12 ui-md-12 ui-input-container">
-            <input class="ui-g-12 ui-md-3" name="x" type="text" placeholder="0" />
-            <input class="ui-g-12 ui-md-3" name="x" type="text" placeholder="0" />
+            <input class="ui-g-12 ui-md-3" name="x" type="text" placeholder="0" [(ngModel)]="funcaoObjetiva.x"/>
+            <input class="ui-g-12 ui-md-3" name="y" type="text" placeholder="0" [(ngModel)]="funcaoObjetiva.y"/>
         </div>
     </div>
     <div class="ui-g-12 ui-md-4 ui-input-container">
         <label>Restrições</label>
         <div class="ui-g-12 ui-md-12 ui-input-container">
-            <input class="ui-g-12 ui-md-3" name="x" type="text" placeholder="0" />
-            <input class="ui-g-12 ui-md-3" name="x" type="text" placeholder="0" />
+            <input class="ui-g-12 ui-md-3" name="x" type="text" placeholder="0" [(ngModel)]="restricao.x"/>
+            <input class="ui-g-12 ui-md-3" name="y" type="text" placeholder="0" [(ngModel)]="restricao.y"/>
             <p-dropdown name="tipoRestricao" [options]="tipoRestricaoOptions" [autoWidth]="false" [(ngModel)]="restricao.tipoRestricao" #tipoRestricao="ngModel" required appendTo="body"></p-dropdown>
             <input class="ui-g-12 ui-md-3" name="resposta" type="text" placeholder="0" [(ngModel)]="restricao.result" />
         </div>

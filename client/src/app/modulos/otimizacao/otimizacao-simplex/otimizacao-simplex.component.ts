@@ -16,6 +16,7 @@ import { OnInit, ViewChild, ElementRef } from '@angular/core';
 declare const $: any;
 import * as moment from 'moment/moment';
 import * as _ from 'lodash';
+import { OtimizacaoSimplexService } from 'app/modulos/otimizacao/service/otimizacao-simplex.service';
 
 @Component({
   selector: 'app-otimizacao-simplex',
@@ -37,7 +38,7 @@ export class OtimizacaoSimplexComponent implements OnInit {
 
   quantidadeVariaveisDecisao: any[] = [];
   quantidadeRestricoes: any[] = [];
-  constructor() {
+  constructor(private otimizacaoSimplexService: OtimizacaoSimplexService) {
   }
 
   ngOnInit() {
@@ -63,4 +64,24 @@ export class OtimizacaoSimplexComponent implements OnInit {
     this.escolherVariaveis = true;
   }
 
+  calcular(){
+    this.mixDeProducao.funcaoObjetiva = this.funcaoObjetiva;
+    this.mixDeProducao.restricoes.push(this.restricao); 
+    this.otimizacaoSimplexService.resolverProblema(this.mixDeProducao).$observable.subscribe(res => {
+      console.log(res);
+    })
+  }
+
+  checkNumber(event, campo, maxValue) {
+    const value = event.target.value;
+    if (value.length > maxValue) {
+      campo.control.setValue(value.substring(0, value.length - (value.length - maxValue)));
+    }
+  }
+
+  checkNaN(event) {
+    if ((isNaN(event.key) && event.key !== 'Backspace' && event.key !== 'Tab') || event.key === ' ') {
+      event.preventDefault();
+    }
+  }
 }

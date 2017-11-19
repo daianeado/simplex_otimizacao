@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 export const OtimizacaoSimplexRoute: Routes = [
 
-    { path: 'otimizacao-simplex', component: OtimizacaoSimplexComponent }
+    { path: '', component: OtimizacaoSimplexComponent }
 ];
 
 @NgModule({

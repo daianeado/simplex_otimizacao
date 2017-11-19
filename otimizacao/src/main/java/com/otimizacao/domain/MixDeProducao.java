@@ -1,19 +1,14 @@
 package com.otimizacao.domain;
 
+import java.util.List;
+
 public class MixDeProducao {
 	
-	private String metodo;	
 	private Integer quantidadeVariaveisDecisao;
 	private Integer quantidadeRestricao;
 	private FuncaoObjetiva funcaoObjetiva;
-	private Restricao restricoes;
+	private List<Restricao> restricoes;
 	
-	public String getMetodo() {
-		return metodo;
-	}
-	public void setMetodo(String metodo) {
-		this.metodo = metodo;
-	}
 	public Integer getQuantidadeVariaveisDecisao() {
 		return quantidadeVariaveisDecisao;
 	}
@@ -32,10 +27,11 @@ public class MixDeProducao {
 	public void setFuncaoObjetiva(FuncaoObjetiva funcaoObjetiva) {
 		this.funcaoObjetiva = funcaoObjetiva;
 	}
-	public Restricao getRestricoes() {
+	public List<Restricao> getRestricoes() {
 		return restricoes;
 	}
-	public void setRestricoes(Restricao restricoes) {
+	public void setRestricoes(List<Restricao> restricoes) {
 		this.restricoes = restricoes;
 	}
+
 }

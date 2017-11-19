@@ -1,5 +1,6 @@
 export class Restricao {
-  x: number[];
+  x: number;
+  y: number;
   tipoRestricao: string[];
   result: number[];
 }
