@@ -1,5 +1,5 @@
 export class FuncaoObjetiva {
   objetivo: string;
-  x: number;
-  y: number;
+  x1: number;
+  x2: number;
 }

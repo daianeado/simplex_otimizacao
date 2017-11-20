@@ -29,6 +29,9 @@ export class OtimizacaoSimplexComponent implements OnInit {
   restricao: Restricao = new Restricao();
   mixDeProducao: MixDeProducao = new MixDeProducao();
   funcaoObjetiva: FuncaoObjetiva = new FuncaoObjetiva();
+  restricao1: Restricao = new Restricao();
+  restricao2: Restricao = new Restricao();
+  restricao3: Restricao = new Restricao();
  
   montarProblema = false;
   escolherVariaveis = true;
@@ -42,6 +45,7 @@ export class OtimizacaoSimplexComponent implements OnInit {
   }
 
   ngOnInit() {
+  
     this.objetivosOptions.push({ label: "Selecione...", value: null});
     this.objetivosOptions.push({ label: "Maximizar", value: 'max'});
     this.objetivosOptions.push({ label: "Minimizar", value: 'min'});
@@ -52,21 +56,12 @@ export class OtimizacaoSimplexComponent implements OnInit {
     
   }
 
-  avancar() {
-    this.montarProblema = true;
-    this.escolherVariaveis = false;
-    this.quantidadeVariaveisDecisao.length = this.mixDeProducao.quantidadeVariaveisDecisao;
-    this.quantidadeRestricoes.length = this.mixDeProducao.quantidadeRestricao;
-  }
-
-  voltar() {
-    this.montarProblema = false;
-    this.escolherVariaveis = true;
-  }
-
   calcular(){
     this.mixDeProducao.funcaoObjetiva = this.funcaoObjetiva;
-    this.mixDeProducao.restricoes.push(this.restricao); 
+    this.mixDeProducao.restricoes.push(this.restricao1);
+    this.mixDeProducao.restricoes.push(this.restricao2);
+    this.mixDeProducao.restricoes.push(this.restricao3);
+    console.log(this.mixDeProducao);
     this.otimizacaoSimplexService.resolverProblema(this.mixDeProducao).$observable.subscribe(res => {
       console.log(res);
     })
