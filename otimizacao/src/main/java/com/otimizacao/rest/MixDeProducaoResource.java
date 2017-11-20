@@ -21,14 +21,6 @@ public class MixDeProducaoResource {
 	@Autowired
 	MixDeProducaoService mixProducaoService;
 	
-//	@PostMapping("/otimizacao/simplex")
-//	@Timed
-//	public MixDeProducao getSimplex(@RequestBody MixDeProducao problema)
-//			throws URISyntaxException {
-//			MixDeProducao result = mixProducaoService.resolveSimplex(problema);
-//			return result;
-//	}
-	
 	@PostMapping("/otimizacao/simplex")
 	@Timed
 	public String getSimplex(@RequestBody MixDeProducao problema)
