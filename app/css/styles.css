@@ -1,0 +1,40 @@
+.escondida {
+    display: none;
+}
+
+.margin-top {
+    margin-top: 50px;
+}
+
+#mixProducao {
+    align-content: center;
+}
+
+.legenda-principal-linhas {
+    margin-top: 1%;
+}
+
+.nav-color {
+    background-color: #6f5499!important;
+}
+
+.btn-color {
+    background-color: #6f5499!important;
+    color: #FFF;
+}
+
+#div-button {
+    margin-left: 73%!important;
+    margin-top: 2%!important;
+}
+
+.objetivo-funcao {
+    margin-left: 31%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+
+.funcao-objetiva {
+    margin-left: 24%;
+    margin-bottom: 1%;
+}
