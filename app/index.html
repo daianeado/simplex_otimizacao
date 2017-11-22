@@ -28,99 +28,105 @@
                 <h3 class="mt-5"> O problema do mix de produção</h3>
             </div>
         </div>
+        <div id="problema">
 
-        <div id="mixProducao">
-            <div id="problema">
-                <!-- Função Objetiva -->
+            <div id="mixProducao">
+                <div id="problema">
+                    <!-- Função Objetiva -->
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 objetivo-funcao">
+                            <div class="form-group">
+                                <label for="objetivo">Objetivo da função:</label>
+                                <select id="objetivo-selecionado" class="col-md-3 col-xs-3 form-control" data-size="5" data-live-search="true" data-width="100%" name="objetivo" required>
+                              <option selected disabled>Escolha uma opção</option>
+                              <option value="MAX">Maximizar</option>
+                              <option value="MIN">Minimizar</option>
+                          </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row funcao-objetiva">
+                        <span class="legenda-principal-linhas">Função Objetiva</span>
+                        <div class="col-md-3 col-xs-3">
+                            <div class="form-group">
+                                <input type="number" min="1" class="form-control" name="fox1" id="fox1" placeholder="X1" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-3">
+                            <div class="form-group">
+                                <input type="number" min="1" class="form-control" name="fox2" id="fox2" placeholder="X2" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Restrições-->
+
+                <!-- Restrição 1 -->
                 <div class="row">
-                    <div class="col-md-12 col-xs-12 objetivo-funcao">
-                        <div class="form-group">
-                            <label for="objetivo">Objetivo da função:</label>
-                            <select id="objetivo-selecionado" class="col-md-3 col-xs-3 form-control" data-size="5" data-live-search="true" data-width="100%" name="objetivo" required>
-                                  <option selected disabled>Escolha uma opção</option>
-                                  <option value="MAX">Maximizar</option>
-                                  <option value="MIN">Minimizar</option>
-                              </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row funcao-objetiva">
-                    <span class="legenda-principal-linhas">Função Objetiva</span>
+                    <span class="legenda-principal-linhas">Restrição 1</span>
                     <div class="col-md-3 col-xs-3">
                         <div class="form-group">
-                            <input type="number" min="1" class="form-control" name="fox1" id="fox1" placeholder="X1" required>
+                            <input type="number" min="1" class="form-control" name="r1x1" id="r1x1" placeholder="X1" required>
                         </div>
                     </div>
                     <div class="col-md-3 col-xs-3">
                         <div class="form-group">
-                            <input type="number" min="1" class="form-control" name="fox2" id="fox2" placeholder="X2" required>
+                            <input type="number" min="1" class="form-control" name="r1x2" id="r1x2" placeholder="X2" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-4">
+                        <div class="form-group">
+                            <input type="number" min="1" class="form-control" name="r1Result" id="r1Result" placeholder="Disponibilidade" required>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!--Restrições-->
 
-            <!-- Restrição 1 -->
-            <div class="row">
-                <span class="legenda-principal-linhas">Restrição 1</span>
-                <div class="col-md-3 col-xs-3">
-                    <div class="form-group">
-                        <input type="number" min="1" class="form-control" name="r1x1" id="r1x1" placeholder="X1" required>
+                <!-- Restrição 2 -->
+                <div class="row">
+                    <span class="legenda-principal-linhas">Restrição 2</span>
+                    <div class="col-md-3 col-xs-4">
+                        <div class="form-group">
+                            <input type="number" min="1" class="form-control" name="r2x1" id="r2x1" placeholder="X1" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-3">
+                        <div class="form-group">
+                            <input type="number" min="1" class="form-control" name="r2x2" id="r2x2" placeholder="X2" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-4">
+                        <div class="form-group">
+                            <input type="number" min="1" class="form-control" name="r2Result" id="r2Result" placeholder="Disponibilidade" required>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-xs-3">
-                    <div class="form-group">
-                        <input type="number" min="1" class="form-control" name="r1x2" id="r1x2" placeholder="X2" required>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-4">
-                    <div class="form-group">
-                        <input type="number" min="1" class="form-control" name="r1Result" id="r1Result" placeholder="Disponibilidade" required>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Restrição 2 -->
-            <div class="row">
-                <span class="legenda-principal-linhas">Restrição 2</span>
-                <div class="col-md-3 col-xs-4">
-                    <div class="form-group">
-                        <input type="number" min="1" class="form-control" name="r2x1" id="r2x1" placeholder="X1" required>
+                <!-- Restrição 3 -->
+                <div class="row">
+                    <span class="legenda-principal-linhas">Restrição 3</span>
+                    <div class="col-md-3 col-xs-3">
+                        <div class="form-group">
+                            <input type="number" min="1" class="form-control" name="r3x1" id="r3x1" placeholder="X1" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-3">
+                        <div class="form-group">
+                            <input type="number" min="1" class="form-control" name="r3x2" id="r3x2" placeholder="X2" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-4">
+                        <div class="form-group">
+                            <input type="number" min="1" class="form-control" name="r3Result" id="r3Result" placeholder="Disponibilidade" required>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-xs-3">
-                    <div class="form-group">
-                        <input type="number" min="1" class="form-control" name="r2x2" id="r2x2" placeholder="X2" required>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-4">
-                    <div class="form-group">
-                        <input type="number" min="1" class="form-control" name="r2Result" id="r2Result" placeholder="Disponibilidade" required>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Restrição 3 -->
-            <div class="row">
-                <span class="legenda-principal-linhas">Restrição 3</span>
-                <div class="col-md-3 col-xs-3">
-                    <div class="form-group">
-                        <input type="number" min="1" class="form-control" name="r3x1" id="r3x1" placeholder="X1" required>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-3">
-                    <div class="form-group">
-                        <input type="number" min="1" class="form-control" name="r3x2" id="r3x2" placeholder="X2" required>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-4">
-                    <div class="form-group">
-                        <input type="number" min="1" class="form-control" name="r3Result" id="r3Result" placeholder="Disponibilidade" required>
-                    </div>
+                <div class="col-md-4" id="div-button">
+                    <button class="btn btn-color" type="button" onclick="resolver()">Resolver</button>
                 </div>
             </div>
-            <div class="col-md-4" id="div-button">
-                <button class="btn btn-color" type="button" onclick="resolver()">Resolver</button>
+        </div>
+        <div id="solucao" class="escondida">
+            <div id="resposta">
             </div>
         </div>
 

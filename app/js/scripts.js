@@ -19,8 +19,7 @@ function getValueInputId(idElemento) {
 
 function resultadoProblema() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        esconder("carregamento");
-        inserirHTML("divSolucao", xmlhttp.responseText);
+        adicionarHTML("resposta", xmlhttp.responseText);
     }
 }
 
@@ -32,6 +31,8 @@ function getValueInputClass() {
 }
 
 function resolver() {
+    remover("problema");
+    adicionar("solucao");
     problema = {
         "restricoes": [{
             "tipoRestricao": "maior",
@@ -55,5 +56,17 @@ function resolver() {
             "x2": getValueInputId("fox2")
         }
     }
-    console.log(JSON.stringify(problema));
+    httpPost(JSON.stringify(problema));
+}
+
+function remover(idElemento) {
+    document.getElementById(idElemento).style.display = "none";
+}
+
+function adicionar(idElemento) {
+    document.getElementById(idElemento).style.display = "block";
+}
+
+function adicionarHTML(idElemento, conteudo) {
+    document.getElementById(idElemento).innerHTML = conteudo;
 }
