@@ -31,10 +31,14 @@
     display: none;
 }
 
-.margin-top {
+.topo {
     margin-top: 50px;
 }
 
 #problemaMixDeProducao {
     align-content: center;
+}
+
+#solucao {
+    text-align: center;
 }

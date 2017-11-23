@@ -13,8 +13,13 @@ function post(dadosProblema) {
     xmlhttp.setRequestHeader("Content-type", "application/json");
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+            var response = [];
+            response = this.responseText.split('x');
+
             document.getElementById("resposta").innerHTML =
-                this.responseText;
+                "<div> <span> A solução ótima é " + response[0] + "</span>" +
+                "<br> <span> X" + response[1] + "</span>" +
+                "<br> <span> X" + response[2] + "</span> </div>";
         }
     };
     xmlhttp.send(dadosProblema);
