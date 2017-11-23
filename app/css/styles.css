@@ -1,15 +1,3 @@
-.escondida {
-    display: none;
-}
-
-.margin-top {
-    margin-top: 50px;
-}
-
-#mixProducao {
-    align-content: center;
-}
-
 .legenda-principal-linhas {
     margin-top: 1%;
 }
@@ -37,4 +25,16 @@
 .funcao-objetiva {
     margin-left: 24%;
     margin-bottom: 1%;
+}
+
+.esconder {
+    display: none;
+}
+
+.margin-top {
+    margin-top: 50px;
+}
+
+#problemaMixDeProducao {
+    align-content: center;
 }
