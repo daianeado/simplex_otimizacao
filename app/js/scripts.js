@@ -1,4 +1,9 @@
 var problema = {};
+var funcaoObjetiva = {};
+var xFuncaoObjetiva = [];
+
+var restricao = {};
+var restricoes = [];
 var xmlhttp;
 
 function esconder(idElemento) {
@@ -47,7 +52,7 @@ function montarCorpoTabela(linhas, colunas) {
 
         for (var j = 1; j <= colunas; j++) {
             corpo += "<td>";
-            corpo += "<input id=\"val-" + i + "-" + j + "\" class=\"form-control\" type=\"number\" placeholder=\"X" + j + "\" min=\"0\">";
+            corpo += "<input id=\"rest-" + i + "-" + j + "\" class=\"form-control\" type=\"number\" placeholder=\"X" + j + "\" min=\"0\">";
             corpo += " </td>";
         }
         corpo += "<td>"
@@ -58,7 +63,7 @@ function montarCorpoTabela(linhas, colunas) {
         corpo += "</select>";
         corpo += "</td>"
         corpo += "<td>";
-        corpo += "<input id=\"tot-" + i + "\" class=\"form-control\" type=\"number\" placeholder=\"Disponibilidade\" min=\"0\">";
+        corpo += "<input id=\"disp-" + i + "\" class=\"form-control\" type=\"number\" placeholder=\"Disponibilidade\" min=\"0\">";
         corpo += " </td>";
 
         corpo += "</tr>";
@@ -96,7 +101,7 @@ function proximo() {
     esconder("inicio");
     exibir("problema");
 
-    var tabela = montarTabela(pegarValor("inputIngredientes"), pegarValor("inputProdutos"));
+    var tabela = montarTabela(pegarValor("qtdRestricoes"), pegarValor("qtdVariaveis"));
 
     inserirHTML("divTabela", tabela);
 }
@@ -104,14 +109,28 @@ function proximo() {
 function resolver() {
     esconder("problema");
     exibir("resolvido");
+    var colunas = pegarValor("qtdVariaveis");
+    var linhas = pegarValor("qtdRestricoes");
 
-    problema.restricoes.tipoRestricao.push(pegarValor("sel1"));
+
+    for (var i = 0; i < linhas; i++) {
+        var xRestricao = [];
+        for (var j = 0; j < colunas; j++) {
+            xRestricao[j] = document.getElementById("rest-" + (i + 1) + '-' + (j + 1)).value;
+        }
+        restricao.tipoRestricao = document.getElementById('sel1').value
+        restricao.disponibilidade = document.getElementById('disp-' + (i + 1)).value
+        restricao.x = xRestricao;
+        restricoes[i] = restricao;
+        restricao = {};
+    }
+
+    console.log(problema);
 
     console.log(JSON.stringify(problema));
 }
 
 function post(dadosProblema) {
-
     xmlhttp = new XMLHttpRequest();
 
     var url = "https://tpsimplexapi.azurewebsites.net/api/otimizacao/simplex";
