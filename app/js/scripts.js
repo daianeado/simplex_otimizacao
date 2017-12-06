@@ -1,6 +1,6 @@
 var problema = {};
 var funcaoObjetiva = {};
-var xFuncaoObjetiva = [];
+
 
 var restricao = {};
 var restricoes = [];
@@ -56,7 +56,7 @@ function montarCorpoTabela(linhas, colunas) {
             corpo += " </td>";
         }
         corpo += "<td>"
-        corpo += "<select class=\"form-control\" id=\"sel1\">"
+        corpo += "<select class=\"form-control\" id=\"sel-" + i + "\">"
         corpo += "<option value=\"menor\"> ≤ </option>";
         corpo += "<option value=\"maior\"> ≥ </option>";
         corpo += "<option value=\"igual\"> = </option>";
@@ -118,16 +118,23 @@ function resolver() {
         for (var j = 0; j < colunas; j++) {
             xRestricao[j] = document.getElementById("rest-" + (i + 1) + '-' + (j + 1)).value;
         }
-        restricao.tipoRestricao = document.getElementById('sel1').value
-        restricao.disponibilidade = document.getElementById('disp-' + (i + 1)).value
+        restricao.tipoRestricao = document.getElementById('sel-' + (i + 1)).value;
+        restricao.disponibilidade = document.getElementById('disp-' + (i + 1)).value;
         restricao.x = xRestricao;
         restricoes[i] = restricao;
         restricao = {};
     }
 
-    console.log(problema);
+    var xFuncaoObjetiva = [];
+    for (var j = 0; j < colunas; j++) {
+        xFuncaoObjetiva[j] = document.getElementById("x-" + (j + 1)).value;
+    }
+    funcaoObjetiva.x = xFuncaoObjetiva;
+    funcaoObjetiva.objetivo = document.getElementById('objetivo-selecionado').value;
+    problema.restricoes = restricoes;
+    problema.funcaoObjetiva = funcaoObjetiva;
 
-    console.log(JSON.stringify(problema));
+    post(JSON.stringify(problema));
 }
 
 function post(dadosProblema) {
