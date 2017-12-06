@@ -1,9 +1,115 @@
 var problema = {};
 var xmlhttp;
 
-/**
- * Função responsável por enviar a requisição contendo o problema para a API
- */
+function esconder(idElemento) {
+    document.getElementById(idElemento).style.display = "none";
+}
+
+function exibir(idElemento) {
+    document.getElementById(idElemento).style.display = "block";
+}
+
+function inserirHTML(idElemento, conteudo) {
+    document.getElementById(idElemento).innerHTML = conteudo;
+}
+
+function pegarValor(idElemento) {
+    return document.getElementById(idElemento).value;
+}
+
+function montarFuncaoObjetiva(colunas) {
+    var linha = "<tr>";
+
+    linha += "<th>Função Objetiva</th>";
+
+    for (var i = 0; i < colunas; i++) {
+        linha += "<td>";
+        linha += "<label> X" + (i + 1) + "</label>";
+        linha += "<input id=\"x-" + (i + 1) + "\" class=\"form-control\" type=\"number\" placeholder=\"X" + (i + 1) + "\">";
+        linha += "</td>";
+    }
+
+    linha += "</tr>";
+
+    return linha;
+}
+
+function montarCorpoTabela(linhas, colunas) {
+    var corpo = "<tbody>";
+
+    corpo += montarFuncaoObjetiva(colunas);
+
+    for (var i = 1; i <= linhas; i++) {
+        corpo += "<tr>";
+        corpo += "<th scope=\"row\">"
+        corpo += "Restrição " + i;
+        corpo += "</th>";
+
+        for (var j = 1; j <= colunas; j++) {
+            corpo += "<td>";
+            corpo += "<input id=\"val-" + i + "-" + j + "\" class=\"form-control\" type=\"number\" placeholder=\"X" + j + "\" min=\"0\">";
+            corpo += " </td>";
+        }
+        corpo += "<td>"
+        corpo += "<select class=\"form-control\" id=\"sel1\">"
+        corpo += "<option value=\"menor\"> ≤ </option>";
+        corpo += "<option value=\"maior\"> ≥ </option>";
+        corpo += "<option value=\"igual\"> = </option>";
+        corpo += "</select>";
+        corpo += "</td>"
+        corpo += "<td>";
+        corpo += "<input id=\"tot-" + i + "\" class=\"form-control\" type=\"number\" placeholder=\"Disponibilidade\" min=\"0\">";
+        corpo += " </td>";
+
+        corpo += "</tr>";
+    }
+    corpo += "</tbody>";
+
+    return corpo;
+}
+
+function montarTabela(linhas, colunas) {
+
+    var tabela = "<div class=\"row\">";
+    tabela += "<div class=\"col-md-12 col-xs-12 objetivo-funcao\">";
+    tabela += "<div class=\"form-group\">";
+    tabela += "<label for=\"objetivo\" class=\"label-objetivo-fo\">Objetivo da função:</label>";
+    tabela += "<select id=\"objetivo-selecionado\" class=\"col-md-3 col-xs-3 form-control\" data-size=\"5\" data-live-search=\"true\" data-width=\"100%\" name=\"objetivo\" required>";
+    tabela += "<option selected disabled>Escolha uma opção</option>";
+    tabela += "<option value=\"MAX\">Maximizar</option>";
+    tabela += "<option value=\"MIN\">Minimizar</option>";
+    tabela += "</select>";
+    tabela += "</div>";
+    tabela += "</div>";
+    tabela += "</div>";
+
+    tabela += "<table class=\"table\" width=\"100%\">";
+    var corpo = montarCorpoTabela(linhas, colunas);
+
+    tabela += corpo + "</table>";
+
+    return tabela;
+}
+
+function proximo() {
+
+    esconder("inicio");
+    exibir("problema");
+
+    var tabela = montarTabela(pegarValor("inputIngredientes"), pegarValor("inputProdutos"));
+
+    inserirHTML("divTabela", tabela);
+}
+
+function resolver() {
+    esconder("problema");
+    exibir("resolvido");
+
+    problema.restricoes.tipoRestricao.push(pegarValor("sel1"));
+
+    console.log(JSON.stringify(problema));
+}
+
 function post(dadosProblema) {
 
     xmlhttp = new XMLHttpRequest();
@@ -13,71 +119,15 @@ function post(dadosProblema) {
     xmlhttp.setRequestHeader("Content-type", "application/json");
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+            esconder("carregando");
             var response = [];
             response = this.responseText.split('x');
 
-            document.getElementById("resposta").innerHTML =
+            document.getElementById("solucao").innerHTML =
                 "<div> <span> A solução ótima é " + response[0] + "</span>" +
                 "<br> <span> X" + response[1] + "</span>" +
                 "<br> <span> X" + response[2] + "</span> </div>";
         }
     };
     xmlhttp.send(dadosProblema);
-}
-
-//Função responsável por recuperar o valor do dropdown
-function getValueInputClass() {
-    var e = document.getElementById("objetivo-selecionado");
-    var strUser = e.options[e.selectedIndex].value;
-
-    return strUser;
-}
-
-//Função responsável por montar o problema para enviar para que a api resolva
-function resolver() {
-    remover("problema");
-    adicionar("solucao");
-
-    problema = {
-            "restricoes": [{
-                    "tipoRestricao": "maior",
-                    "x1": document.getElementById("r1x1").value,
-                    "x2": document.getElementById("r1x2").value,
-                    "result": document.getElementById("r1Result").value
-                },
-                {
-                    "tipoRestricao": "maior",
-                    "x1": document.getElementById("r2x1").value,
-                    "x2": document.getElementById("r2x2").value,
-                    "result": document.getElementById("r2Result").value
-                },
-                {
-                    "tipoRestricao": "maior",
-                    "x1": document.getElementById("r3x1").value,
-                    "x2": document.getElementById("r3x2").value,
-                    "result": document.getElementById("r3Result").value
-                }
-            ],
-            "funcaoObjetiva": {
-                "objetivo": "MAX",
-                "x1": document.getElementById("fox1").value,
-                "x2": document.getElementById("fox2").value
-            }
-        }
-        //converte o objeto problema em json
-    post(JSON.stringify(problema));
-}
-
-//Função responsável por remover elemento através de seu id
-function remover(idElemento) {
-    document.getElementById(idElemento).style.display = "none";
-}
-
-//Função responsável por adicionar elemento através de seu id
-function adicionar(idElemento) {
-    document.getElementById(idElemento).style.display = "block";
-}
-//Função responsável por adicionar html  através de seu id
-function adicionarHTML(idElemento, conteudo) {
-    document.getElementById(idElemento).innerHTML = conteudo;
 }

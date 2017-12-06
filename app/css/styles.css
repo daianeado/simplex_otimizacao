@@ -42,3 +42,28 @@
 #solucao {
     text-align: center;
 }
+
+.escondida {
+    display: none;
+}
+
+.margin-top {
+    margin-top: 10px;
+}
+
+.white {
+    color: #ffffff;
+}
+
+.label-objetivo-fo {
+    margin-left: -87%;
+}
+
+#carregando {
+    padding-top: 14%;
+    color: #6f5499!important;
+}
+
+.padding {
+    padding-top: 5%;
+}
